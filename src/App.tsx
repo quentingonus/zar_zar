@@ -98,7 +98,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-32 pb-16 overflow-hidden">
+      <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-28 pb-16 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl w-full">
           {/* Text side */}
           <div>
@@ -114,7 +114,7 @@ export default function App() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-8xl lg:text-9xl font-serif leading-[0.9] tracking-tight mb-8"
+              className="text-4xl md:text-8xl lg:text-9xl font-serif leading-[0.9] tracking-tight mb-6 md:mb-8"
             >
               Zar Zar{' '}
               <span className="italic text-gray-400">Aung</span>
@@ -123,7 +123,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xl md:text-2xl text-gray-600 max-w-lg font-light leading-relaxed mb-10"
+              className="text-base md:text-2xl text-gray-600 max-w-lg font-light leading-relaxed mb-8 md:mb-10"
             >
               Detail-oriented Graphic Designer combining technical precision with a passion for creative storytelling. Based in Yangon, Myanmar.
             </motion.p>
@@ -131,12 +131,12 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-8"
+              className="flex flex-wrap items-center gap-4 md:gap-8"
             >
               <a
                 href="#work"
                 onClick={scrollTo('work')}
-                className="group inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-sm uppercase tracking-widest font-medium hover:bg-gray-800 transition-colors"
+                className="group inline-flex items-center gap-3 bg-black text-white px-5 md:px-8 py-3 md:py-4 text-xs md:text-sm uppercase tracking-widest font-medium hover:bg-gray-800 transition-colors"
               >
                 View Work
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -192,7 +192,7 @@ export default function App() {
           <span className="text-sm uppercase tracking-widest text-gray-500 font-medium">2024—Present</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[220px] md:auto-rows-[300px]">
           {works.map((work, index) => (
             <motion.div
               key={work.id}
@@ -264,22 +264,22 @@ export default function App() {
       </AnimatePresence>
 
       {/* About Section */}
-      <section id="about" className="px-6 md:px-12 lg:px-24 py-32 bg-black text-white">
+      <section id="about" className="px-6 md:px-12 lg:px-24 py-16 md:py-32 bg-black text-white overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl md:text-7xl font-serif mb-8 leading-tight">
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-serif mb-6 md:mb-8 leading-tight">
               Design is not just what it looks like, <span className="italic text-gray-400">it's how it works.</span>
             </h2>
-            <p className="text-lg text-gray-400 font-light leading-relaxed mb-8 max-w-lg">
+            <p className="text-base md:text-lg text-gray-400 font-light leading-relaxed mb-8 max-w-lg">
               With a unique background in data analysis and BPO, I specialize in crafting high-quality digital and print visual solutions. Armed with expertise in the Adobe Creative Suite and a drive for continuous learning, I translate innovative design trends into impactful assets.
             </p>
 
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-800 pt-12">
+            <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-800 pt-8 md:pt-12">
               <div>
                 <h4 className="text-sm uppercase tracking-widest text-gray-500 mb-4">Expertise</h4>
                 <ul className="space-y-2 text-gray-300 font-light">
@@ -306,7 +306,7 @@ export default function App() {
             transition={{ duration: 0.8 }}
             className="flex justify-center"
           >
-            <div className="aspect-[3/4] bg-gray-900 overflow-hidden w-1/2">
+            <div className="aspect-[3/4] bg-gray-900 overflow-hidden w-2/3 md:w-1/2">
               <img
                 src={portrait}
                 alt="Zar Zar Aung portrait"
@@ -326,12 +326,12 @@ export default function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl md:text-8xl font-serif mb-8">Let's talk.</h2>
+            <h2 className="text-4xl md:text-8xl font-serif mb-6 md:mb-8">Let's talk.</h2>
 
-            <div className="flex flex-col items-center gap-4 mb-24">
+            <div className="flex flex-col items-center gap-4 mb-16 md:mb-24">
               <a
                 href="mailto:shwezar259@gmail.com"
-                className="inline-block text-2xl md:text-4xl font-serif border-b-2 border-black pb-2 hover:text-gray-500 hover:border-gray-500 transition-colors"
+                className="inline-block text-lg md:text-4xl font-serif border-b-2 border-black pb-2 hover:text-gray-500 hover:border-gray-500 transition-colors break-all text-center"
               >
                 shwezar259@gmail.com
               </a>
