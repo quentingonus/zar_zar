@@ -34,8 +34,8 @@ const workGroups = [
     label: 'Event Posters',
     description: 'Corporate & company events',
     items: [
-      { id: 5, title: 'MTM Annual Trip', image: photo5, span: 'col-span-1 row-span-2' },
-      { id: 6, title: 'Company Annual Trip', image: photo6, span: 'col-span-1 row-span-1' },
+      { id: 5, title: 'Annual Trip I', image: photo5, span: 'col-span-1 row-span-2' },
+      { id: 6, title: 'Annual Trip II', image: photo6, span: 'col-span-1 row-span-1' },
       { id: 7, title: 'Annual Party', image: photo7, span: 'col-span-1 row-span-1' },
       { id: 9, title: 'Award Ceremony', image: photo9, span: 'col-span-1 row-span-1' },
       { id: 10, title: 'Award Ceremony II', image: photo10, span: 'col-span-1 row-span-1' },
