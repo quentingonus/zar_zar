@@ -4,7 +4,6 @@ import { ArrowRight, Facebook, X, MapPin, Phone, Mail, Menu } from 'lucide-react
 
 import photo1 from '../showcases/christmas.jpg';
 import photo2 from '../showcases/tazaungdai.jpg';
-import photo3 from '../showcases/labor_day.jpg';
 import photo4 from '../showcases/kasone.jpg';
 import photo5 from '../showcases/annual_trip.jpg';
 import photo6 from '../showcases/annual_trip2.jpg';
@@ -18,24 +17,35 @@ import photo13 from '../showcases/martyrday.jpg';
 import portrait from '../showcases/zar_zar_aung.jpg';
 import professional from '../showcases/professonal.png';
 
-const works = [
-  { id: 1, title: 'Merry Christmas', category: 'Social Media', image: photo1, span: 'col-span-1 md:col-span-2 lg:col-span-1 row-span-2' },
-  { id: 2, title: 'Tazaungdaing Festival', category: 'Social Media', image: photo2, span: 'col-span-1 row-span-1' },
-  { id: 3, title: 'Labour Day', category: 'Social Media', image: photo3, span: 'col-span-1 row-span-1' },
-  { id: 4, title: 'Kason Festival', category: 'Social Media', image: photo4, span: 'col-span-1 md:col-span-2 row-span-1' },
-  { id: 5, title: 'MTM Annual Trip', category: 'Event Poster', image: photo5, span: 'col-span-1 row-span-2' },
-  { id: 6, title: 'Company Annual Trip', category: 'Event Poster', image: photo6, span: 'col-span-1 row-span-1' },
-  { id: 7, title: 'Annual Party', category: 'Event Poster', image: photo7, span: 'col-span-1 row-span-1' },
-  { id: 8, title: 'Peasants Day', category: 'Social Media', image: photo8, span: 'col-span-1 md:col-span-2 lg:col-span-3 row-span-1' },
-  { id: 9, title: 'Award Ceremony', category: 'Event Poster', image: photo9, span: 'col-span-1 row-span-1' },
-  { id: 10, title: 'Award Ceremony II', category: 'Event Poster', image: photo10, span: 'col-span-1 row-span-1' },
-  { id: 11, title: 'Award Ceremony III', category: 'Event Poster', image: photo11, span: 'col-span-1 md:col-span-2 row-span-1' },
-  { id: 12, title: 'Happy New Year', category: 'Social Media', image: photo12, span: 'col-span-1 row-span-2' },
-  { id: 13, title: "Martyr's Day", category: 'Social Media', image: photo13, span: 'col-span-1 md:col-span-2 lg:col-span-1 row-span-1' },
+const workGroups = [
+  {
+    label: 'Social Media',
+    description: 'Festive & occasion posts',
+    items: [
+      { id: 1, title: 'Merry Christmas', image: photo1, span: 'col-span-1 md:col-span-2 lg:col-span-1 row-span-2' },
+      { id: 2, title: 'Tazaungdaing Festival', image: photo2, span: 'col-span-1 row-span-1' },
+      { id: 4, title: 'Kason Festival', image: photo4, span: 'col-span-1 md:col-span-2 row-span-1' },
+      { id: 8, title: 'Peasants Day', image: photo8, span: 'col-span-1 md:col-span-2 lg:col-span-1 row-span-1' },
+      { id: 12, title: 'Happy New Year', image: photo12, span: 'col-span-1 row-span-2' },
+      { id: 13, title: "Martyr's Day", image: photo13, span: 'col-span-1 md:col-span-2 lg:col-span-1 row-span-1' },
+    ],
+  },
+  {
+    label: 'Event Posters',
+    description: 'Corporate & company events',
+    items: [
+      { id: 5, title: 'MTM Annual Trip', image: photo5, span: 'col-span-1 row-span-2' },
+      { id: 6, title: 'Company Annual Trip', image: photo6, span: 'col-span-1 row-span-1' },
+      { id: 7, title: 'Annual Party', image: photo7, span: 'col-span-1 row-span-1' },
+      { id: 9, title: 'Award Ceremony', image: photo9, span: 'col-span-1 row-span-1' },
+      { id: 10, title: 'Award Ceremony II', image: photo10, span: 'col-span-1 row-span-1' },
+      { id: 11, title: 'Award Ceremony III', image: photo11, span: 'col-span-1 md:col-span-2 row-span-1' },
+    ],
+  },
 ];
 
 export default function App() {
-  const [selectedWork, setSelectedWork] = useState<typeof works[0] | null>(null);
+  const [selectedWork, setSelectedWork] = useState<{ id: number; title: string; image: string; span: string } | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
@@ -202,30 +212,53 @@ export default function App() {
           <span className="text-sm uppercase tracking-widest text-gray-500 font-medium">2024—Present</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[220px] md:auto-rows-[300px]">
-          {works.map((work, index) => (
-            <motion.div
-              key={work.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              onClick={() => setSelectedWork(work)}
-              className={`group relative overflow-hidden bg-gray-100 cursor-pointer ${work.span}`}
-            >
-              <img
-                src={work.image}
-                alt={work.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute bottom-0 left-0 p-8 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                <span className="text-white/80 text-xs uppercase tracking-widest font-medium mb-2 block">
-                  {work.category}
+        <div className="space-y-20">
+          {workGroups.map((group, groupIndex) => (
+            <div key={group.label}>
+              {/* Group header */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="flex items-baseline gap-4 mb-6 pb-3 border-b border-gray-200"
+              >
+                <span className="text-xs uppercase tracking-[0.25em] font-semibold text-gray-400">
+                  {String(groupIndex + 1).padStart(2, '0')}
                 </span>
-                <h3 className="text-white text-2xl font-serif">{work.title}</h3>
+                <h3 className="text-lg md:text-xl font-serif text-gray-800">{group.label}</h3>
+                <span className="text-xs text-gray-400 font-light hidden md:inline">{group.description}</span>
+                <span className="ml-auto text-xs text-gray-400 tabular-nums">{group.items.length} works</span>
+              </motion.div>
+
+              {/* Group grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[220px] md:auto-rows-[300px]">
+                {group.items.map((work, index) => (
+                  <motion.div
+                    key={work.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.6, delay: index * 0.08 }}
+                    onClick={() => setSelectedWork({ ...work, span: work.span })}
+                    className={`group relative overflow-hidden bg-gray-100 cursor-pointer ${work.span}`}
+                  >
+                    <img
+                      src={work.image}
+                      alt={work.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-0 left-0 p-6 md:p-8 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                      <span className="text-white/80 text-xs uppercase tracking-widest font-medium mb-1 block">
+                        {group.label}
+                      </span>
+                      <h3 className="text-white text-xl md:text-2xl font-serif">{work.title}</h3>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -265,7 +298,7 @@ export default function App() {
               className="absolute bottom-6 left-6 md:bottom-12 md:left-12 text-white"
             >
               <span className="text-white/70 text-sm uppercase tracking-widest font-medium mb-2 block">
-                {selectedWork.category}
+                {workGroups.find(g => g.items.some(i => i.id === selectedWork.id))?.label}
               </span>
               <h3 className="text-3xl md:text-4xl font-serif">{selectedWork.title}</h3>
             </motion.div>
