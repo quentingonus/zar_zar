@@ -10,6 +10,11 @@ import photo5 from '../showcases/annual_trip.jpg';
 import photo6 from '../showcases/annual_trip2.jpg';
 import photo7 from '../showcases/event.jpg';
 import photo8 from '../showcases/worker.jpg';
+import photo9 from '../showcases/award1.jpg';
+import photo10 from '../showcases/award2.jpg';
+import photo11 from '../showcases/award3.jpg';
+import photo12 from '../showcases/happy_new_year.jpg';
+import photo13 from '../showcases/martyrday.jpg';
 import portrait from '../showcases/zar_zar_aung.jpg';
 import professional from '../showcases/professonal.png';
 
@@ -22,6 +27,11 @@ const works = [
   { id: 6, title: 'Company Annual Trip', category: 'Event Poster', image: photo6, span: 'col-span-1 row-span-1' },
   { id: 7, title: 'Annual Party', category: 'Event Poster', image: photo7, span: 'col-span-1 row-span-1' },
   { id: 8, title: 'Peasants Day', category: 'Social Media', image: photo8, span: 'col-span-1 md:col-span-2 lg:col-span-3 row-span-1' },
+  { id: 9, title: 'Award Ceremony', category: 'Event Poster', image: photo9, span: 'col-span-1 row-span-1' },
+  { id: 10, title: 'Award Ceremony II', category: 'Event Poster', image: photo10, span: 'col-span-1 row-span-1' },
+  { id: 11, title: 'Award Ceremony III', category: 'Event Poster', image: photo11, span: 'col-span-1 md:col-span-2 row-span-1' },
+  { id: 12, title: 'Happy New Year', category: 'Social Media', image: photo12, span: 'col-span-1 row-span-2' },
+  { id: 13, title: "Martyr's Day", category: 'Social Media', image: photo13, span: 'col-span-1 md:col-span-2 lg:col-span-1 row-span-1' },
 ];
 
 export default function App() {
