@@ -11,3 +11,9 @@ body {
   color: #111;
   scroll-behavior: smooth;
 }
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(200%);
+  }
+}

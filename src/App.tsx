@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Facebook, X, MapPin, Phone, Mail, Menu } from 'lucide-react';
 
@@ -10,42 +10,90 @@ import photo6 from '../showcases/annual_trip2.jpg';
 import photo7 from '../showcases/event.jpg';
 import photo8 from '../showcases/worker.jpg';
 import photo9 from '../showcases/award1.jpg';
-import photo10 from '../showcases/award2.jpg';
-import photo11 from '../showcases/award3.jpg';
+import photo10 from '../showcases/certificate1.jpg';
+import photo11 from '../showcases/certificate2.jpg';
 import photo12 from '../showcases/happy_new_year.jpg';
 import photo13 from '../showcases/martyrday.jpg';
+import photo14 from '../showcases/award2.jpg';
+import photo15 from '../showcases/certificate3.jpg';
+import photo16 from '../showcases/christmas2.jpg';
+import photo17 from '../showcases/pyi_daung_su_day.jpg';
+import photo18 from '../showcases/tazaungmon_day.jpg';
+import photo19 from '../showcases/thadingyut_day.jpg';
 import portrait from '../showcases/zar_zar_aung.jpg';
 import professional from '../showcases/professonal.png';
+
+function LazyImage({ src, alt }: { src: string; alt: string }) {
+  const [loaded, setLoaded] = useState(false);
+  const [inView, setInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setInView(true); observer.disconnect(); } },
+      { rootMargin: '200px' }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="w-full h-full">
+      {/* Shimmer skeleton */}
+      {!loaded && (
+        <div className="absolute inset-0 bg-gray-200 overflow-hidden">
+          <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200" />
+        </div>
+      )}
+      {inView && (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${loaded ? 'opacity-100' : 'opacity-0'
+            }`}
+        />
+      )}
+    </div>
+  );
+}
 
 const workGroups = [
   {
     label: 'Social Media',
     description: 'Festive & occasion posts',
     items: [
-      { id: 1, title: 'Merry Christmas', image: photo1, span: 'col-span-1 md:col-span-2 lg:col-span-1 row-span-2' },
-      { id: 2, title: 'Tazaungdaing Festival', image: photo2, span: 'col-span-1 row-span-1' },
-      { id: 4, title: 'Kason Festival', image: photo4, span: 'col-span-1 md:col-span-2 row-span-1' },
-      { id: 8, title: 'Peasants Day', image: photo8, span: 'col-span-1 md:col-span-2 lg:col-span-1 row-span-1' },
-      { id: 12, title: 'Happy New Year', image: photo12, span: 'col-span-1 row-span-2' },
-      { id: 13, title: "Martyr's Day", image: photo13, span: 'col-span-1 md:col-span-2 lg:col-span-1 row-span-1' },
+      { id: 12, title: 'Happy New Year', image: photo12 },
+      { id: 1, title: 'Merry Christmas', image: photo1 },
+      { id: 16, title: 'Christmas II', image: photo16 },
+      { id: 13, title: "Martyr's Day", image: photo13 },
+      { id: 17, title: 'Pyi Daung Su Day', image: photo17 },
+      { id: 8, title: 'Peasants Day', image: photo8 },
+      { id: 4, title: 'Kason Festival', image: photo4 },
+      { id: 19, title: 'Thadingyut Day', image: photo19 },
+      { id: 18, title: 'Tazaungmon Day', image: photo18 },
+      { id: 2, title: 'Tazaungdaing Festival', image: photo2 },
     ],
   },
   {
     label: 'Event Posters',
     description: 'Corporate & company events',
     items: [
-      { id: 5, title: 'Annual Trip I', image: photo5, span: 'col-span-1 row-span-2' },
-      { id: 6, title: 'Annual Trip II', image: photo6, span: 'col-span-1 row-span-1' },
-      { id: 7, title: 'Annual Party', image: photo7, span: 'col-span-1 row-span-1' },
-      { id: 9, title: 'Award Ceremony', image: photo9, span: 'col-span-1 row-span-1' },
-      { id: 10, title: 'Award Ceremony II', image: photo10, span: 'col-span-1 row-span-1' },
-      { id: 11, title: 'Award Ceremony III', image: photo11, span: 'col-span-1 md:col-span-2 row-span-1' },
+      { id: 9, title: 'Award Ceremony I', image: photo9 },
+      { id: 14, title: 'Award Ceremony II', image: photo14 },
+      { id: 11, title: 'Certificate I', image: photo11 },
+      { id: 10, title: 'Certificate II', image: photo10 },
+      { id: 15, title: 'Certificate III', image: photo15 },
+      { id: 5, title: 'Annual Trip I', image: photo5 },
+      { id: 6, title: 'Annual Trip II', image: photo6 },
+      { id: 7, title: 'Annual Party', image: photo7 },
     ],
   },
 ];
 
 export default function App() {
-  const [selectedWork, setSelectedWork] = useState<{ id: number; title: string; image: string; span: string } | null>(null);
+  const [selectedWork, setSelectedWork] = useState<{ id: number; title: string; image: string } | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
@@ -174,14 +222,14 @@ export default function App() {
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative order-first lg:order-last"
           >
-            {/* Decorative background block - desktop only */}
+            {/* Decorative background block - desktop only, clipped to photo bounds */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute -top-6 -right-6 w-full h-full bg-gray-100 -z-10 hidden lg:block"
+              className="absolute top-4 -right-4 w-full h-full bg-gray-100 -z-10 hidden lg:block"
             />
-            <div className="aspect-[3/4] overflow-hidden bg-gray-200 w-52 mx-auto lg:w-full rounded-lg lg:rounded-none">
+            <div className="aspect-[4/5] overflow-hidden bg-gray-200 w-52 mx-auto lg:w-full rounded-lg lg:rounded-none">
               <motion.img
                 src={professional}
                 alt="Zar Zar Aung professional"
@@ -232,28 +280,24 @@ export default function App() {
               </motion.div>
 
               {/* Group grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[220px] md:auto-rows-[300px]">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
                 {group.items.map((work, index) => (
                   <motion.div
                     key={work.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.6, delay: index * 0.08 }}
-                    onClick={() => setSelectedWork({ ...work, span: work.span })}
-                    className={`group relative overflow-hidden bg-gray-100 cursor-pointer ${work.span}`}
+                    transition={{ duration: 0.6, delay: index * 0.06 }}
+                    onClick={() => setSelectedWork(work)}
+                    className="group relative overflow-hidden bg-gray-100 cursor-pointer aspect-video"
                   >
-                    <img
-                      src={work.image}
-                      alt={work.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    <LazyImage src={work.image} alt={work.title} />
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-0 left-0 p-6 md:p-8 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    <div className="absolute bottom-0 left-0 p-4 md:p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                       <span className="text-white/80 text-xs uppercase tracking-widest font-medium mb-1 block">
                         {group.label}
                       </span>
-                      <h3 className="text-white text-xl md:text-2xl font-serif">{work.title}</h3>
+                      <h3 className="text-white text-base md:text-xl font-serif">{work.title}</h3>
                     </div>
                   </motion.div>
                 ))}
