@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import portrait from '../../showcases/zar_zar_aung.jpg';
+import portrait from '../../images/zar_zar_aung.jpg';
 
 export default function About() {
     return (

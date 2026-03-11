@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
-import professional from '../../showcases/professonal.png';
+import professional from '../../images/professonal.png';
 
 export default function Hero() {
     const scrollTo = (id: string) => (e: React.MouseEvent) => {
