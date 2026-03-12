@@ -126,11 +126,11 @@ export default function Navbar() {
                             <div className="p-8">
                                 <nav className="flex flex-col">
                                     {[
-                                        { id: "about", label: "About" },
-                                        { id: "skills", label: "Skills" },
                                         { id: "work", label: "Experience" },
-                                        { id: "featured-projects", label: "Featured Projects" },
-                                        { id: "certifications", label: "Certifications" },
+                                        { id: "about", label: "About" },
+                                        // { id: "skills", label: "Skills" },
+                                        // { id: "featured-projects", label: "Featured Projects" },
+                                        // { id: "certifications", label: "Certifications" },
                                         { id: "contact", label: "Contact" },
                                     ].map((item, idx) => (
                                         <div key={item.id} className="overflow-hidden">
